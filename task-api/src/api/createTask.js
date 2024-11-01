@@ -14,7 +14,7 @@ exports.handler = async (event) => {
     console.log(`record created successfullt in dynamoDb:: ${JSON.stringify(createrecords)}`);
     // Return a successful response
     return {
-      statusCode: 201, // HTTP status code for created
+      statusCode: 201, // HTTP   status code for created
       headers: {
         "Content-Type": "application/json",
       },
