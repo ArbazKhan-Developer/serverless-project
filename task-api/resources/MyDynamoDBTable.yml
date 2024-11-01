@@ -1,0 +1,18 @@
+MyDynamoDBTable:
+  Type: AWS::DynamoDB::Table
+  Properties:
+    TableName: MyTaskDb
+    AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: S
+      - AttributeName: timestamp
+        AttributeType: S
+    KeySchema:
+      - AttributeName: id
+        KeyType: HASH
+      - AttributeName: timestamp
+        KeyType: RANGE
+    ProvisionedThroughput:
+      ReadCapacityUnits: 2
+      WriteCapacityUnits: 2
+    DeletionProtectionEnabled: true

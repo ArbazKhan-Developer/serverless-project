@@ -1,0 +1,79 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: abzkhan
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: task-api
+frameworkVersion: "4"
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  memorySize: 128
+  timeout: 30
+  logRetentionInDays: 1
+  # environment: 
+  #   TABLENAME: MyTaskDb
+  # iamRoleStatements: 
+  #   - Effect: "Allow"
+  #     Action:
+  #       - "dynamodb:PutItem"
+  #       - "dynamodb:GetItem"
+  #       - "dynamodb:UpdateItem"
+  #       - "dynamodb:DeleteItem"
+  #     Resource: 
+  #       - "arn:aws:dynamodb:us-east-1:881490120804:table/MyTaskDb"
+
+# plugins:
+#   - serverless-offline
+#   - serverless-dynamodb-local
+
+# custom:
+#   dynamodb:
+#     port: 8000
+#     inMemory: true
+
+functions:
+  getRdsData: 
+    handler: src/api/getRdsData.handler
+    events:
+      - http:
+          path: getRdsData/
+          method: get
+  # authorizer:
+  #   handler: src/authorizer/authorizer.handler
+
+  # getTask: 
+  #   handler: src/api/getTask.handler
+  #   events:
+  #     - http:
+  #         path: getTask/
+  #         method: get
+  #         authorizer: authorizer
+
+  # createTask:
+  #   handler: src/api/createTask.handler
+  #   events:
+  #     - http:
+  #         path: createTask/
+  #         method: post
+  #         cors: true
+  #         authorizer: authorizer
+  # updateTask:
+  #   handler: src/api/updateTask.handler
+  #   events:
+  #     - http:
+  #         path: updateTask
+  #         method: put
+  #         cors: true
+  #         authorizer: authorizer
+  # deleteTask:
+  #   handler: src/api/deleteTask.handler
+  #   events:
+  #     - http:
+  #         path: deleteTask
+  #         method: delete
+  #         cors: true
+  #         authorizer: authorizer
+
+#  
