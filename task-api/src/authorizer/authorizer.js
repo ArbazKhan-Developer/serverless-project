@@ -3,7 +3,7 @@ const { LexModelBuildingService } = require("aws-sdk");
 module.exports.handler = async (event) => {
   // console.log(`event received:: ${JSON.stringify(event)}`);
   const token = event.authorizationToken;
-  console.log(`methodArn:: ${event.methodArn}   end`);
+  console.log(`methodArn:: ${event.methodArn} end`);
   const isValidateToken = await validateToken(token);
   if (!isValidateToken) {
     return await generateAccessPolicy("user", "Deny", event.methodArn);
